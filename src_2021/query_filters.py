@@ -189,8 +189,9 @@ def create_wiki_keywords(output_file="wiki_keywords.txt"):
 
     with open(os.path.join(WIKI_DATA_PATH, "Wiki12-file-locator.txt")) as f:
         for l in f.readlines():
-            _, html_title = l.strip().split()
-            text = html_title.replace(".html", "").replace("_", " ")
+            _, html_file_path = l.strip().split()
+            basename = os.path.basename(html_file_path)
+            text = basename.replace(".html", "").replace("_", " ")
             text = text.replace("(", "").replace(")", "")
 
             text = text.lower()
@@ -224,8 +225,8 @@ STEMMED_WIKI_KEYWORDS = set(read_stemmed_wiki_keywords())
 
 
 if __name__ == '__main__':
-    # create_nltk_stopwords()
-    # create_MSE_tags()
-    # create_tag_keywords()
-    # create_wiki_keywords()
+    create_nltk_stopwords()
+    create_MSE_tags()
+    create_tag_keywords()
+    create_wiki_keywords()
     pass  # enable the above to create the word lists from scratch
